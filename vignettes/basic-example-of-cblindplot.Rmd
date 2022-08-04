@@ -1,0 +1,38 @@
+---
+title: "Basic example of {cblindplot}"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{basic-example-of-cblindplot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(cblindplot)
+library(terra)
+```
+
+```{r}
+# read the example data
+my_image <- rast(system.file("pic/rainbowr.png", package = "cblindplot"))
+```
+
+```{r}
+# it uses the rainbow palette
+plotRGB(my_image)
+```
+
+```{r}
+# try the cblindplot package
+cblind_plot(my_image)
+```
+
+
+

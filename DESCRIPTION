@@ -14,3 +14,7 @@ Imports:
     ggplot2,
     imagefx, 
     terra
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
