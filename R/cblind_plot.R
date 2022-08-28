@@ -17,14 +17,14 @@
 #' my_image <- rast(system.file("pic/rainbowr.png", package = "cblindplot"))
 #' plotRGB(my_image)
 #'
-#' cblind_plot(my_image)
-#' #cblind_plot(my_image, crop_manual = TRUE)
-#' #cblind_plot(my_image, select_class = TRUE)
-cblind_plot = function(im, r = 1, g = 2, b = 3, cvd = c("protanopia", "deuteranopia", "tritanopia"), crop_manual = FALSE, select_class = FALSE, ...){
+#' cblind.plot(my_image)
+#' #cblind.plot(my_image, crop_manual = TRUE)
+#' #cblind.plot(my_image, select_class = TRUE)
+cblind.plot = function(im, r = 1, g = 2, b = 3, cvd = c("protanopia", "deuteranopia", "tritanopia"), crop_manual = FALSE, select_class = FALSE, ...){
   cvd <- cvd[1]
   if(!cvd %in% c("protanopia", "deuteranopia", "tritanopia")) stop("Wrong 'cvd` value. It can be 'protanopia', 'deuteranopia', or 'tritanopia'")
 
-  impl <- cblind_prep(im, r = r, g = g, crop_manual = crop_manual, select_class = select_class)
+  impl <- cblind.prep(im, r = r, g = g, crop_manual = crop_manual, select_class = select_class)
   impl <- as.data.frame(impl, xy = TRUE)[c(1:3)]
   colnames(impl) <- c("x", "y", "values")
   ggt <- ggplot2::ggplot(impl, ggplot2::aes_string(x = "x", y = "y", fill = "values")) +
@@ -59,10 +59,10 @@ cblind_plot = function(im, r = 1, g = 2, b = 3, cvd = c("protanopia", "deuterano
 #' my_image <- rast(system.file("pic/rainbowr.png", package = "cblindplot"))
 #' plotRGB(my_image)
 #'
-#' new_image <- cblind_prep(my_image)
+#' new_image <- cblind.prep(my_image)
 #' new_image
-cblind_prep <- function(im, r = 1, g = 2, b = 3, crop_manual = FALSE, select_class = FALSE){
-  im <- cblind_prep_input(im)
+cblind.prep <- function(im, r = 1, g = 2, b = 3, crop_manual = FALSE, select_class = FALSE){
+  im <- cblind.prep.input(im)
 
   if (crop_manual) {
     if(terra::nlyr(im) == 1) {
@@ -109,7 +109,7 @@ cblind_prep <- function(im, r = 1, g = 2, b = 3, crop_manual = FALSE, select_cla
   return(impl)
 }
 
-cblind_prep_input = function(im){
+cblind.prep.input = function(im){
   if (!inherits(im, "SpatRaster") && !inherits(im, "RasterLayer") && !inherits(im, "RasterStack") && !inherits(im, "RasterBrick") && !inherits(im, "list")){
     stop("'im' must be a raster object or a list")
   } else if (inherits(im, "RasterLayer") || inherits(im, "RasterStack") || inherits(im, "RasterBrick")){
