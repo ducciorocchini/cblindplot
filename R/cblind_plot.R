@@ -1,3 +1,8 @@
+# Code related to the manuscript:
+# Scientific maps should reach everyone: a straightforward approach to let colour blind people visualise spatial patterns
+# by Duccio Rocchini et al.
+# Original coda by: Elisa Thouverai rewritten and readapted by Jakub Nowosad
+
 #' Title
 #'
 #' @param im
