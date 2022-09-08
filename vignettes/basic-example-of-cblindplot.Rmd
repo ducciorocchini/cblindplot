@@ -31,7 +31,7 @@ plotRGB(my_image)
 
 ```{r}
 # try the cblindplot package
-cblind_plot(my_image)
+cblind.plot(my_image)
 ```
 
 

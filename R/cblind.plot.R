@@ -1,31 +1,32 @@
 # Code related to the manuscript:
 # Scientific maps should reach everyone: a straightforward approach to let colour blind people visualise spatial patterns
 # by Duccio Rocchini et al.
-# Original coda by: Elisa Thouverai rewritten and readapted by Jakub Nowosad
+# Original code by: Elisa Thouverai rewritten and readapted by Jakub Nowosad
 
-#' Title
+#' Color Blind Plot
 #'
-#' @param im
-#' @param r
-#' @param g
-#' @param b
-#' @param cvd
-#' @param crop_manual
-#' @param select_class
-#' @param ...
+#' It updates the color palette on an input image and returns a new visualization along with a new color legend.
 #'
-#' @return
+#' @param im A file path to an image
+#' @param cvd A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia"
+#' @param r Index of the Red channel
+#' @param g Index of the Green channel
+#' @param b Index of the Blue channel
+#' @param crop_manual Do you want to manually crop the input image?
+#' @param select_class Do you want to select only certain colors in the image for the further processing?
+#'
+#' @return A ggplot2 plot
 #' @export
 #'
 #' @examples
-#' library(terra)
-#' my_image <- rast(system.file("pic/rainbowr.png", package = "cblindplot"))
-#' plotRGB(my_image)
+#' my_image <- system.file("pic/rainbowr.png", package = "cblindplot")
+#' suppressWarnings(my_image_terra <- terra::rast(my_image))
+#' terra::plotRGB(my_image_terra)
 #'
 #' cblind.plot(my_image)
 #' #cblind.plot(my_image, crop_manual = TRUE)
 #' #cblind.plot(my_image, select_class = TRUE)
-cblind.plot = function(im, r = 1, g = 2, b = 3, cvd = c("protanopia", "deuteranopia", "tritanopia"), crop_manual = FALSE, select_class = FALSE, ...){
+cblind.plot = function(im, cvd = c("protanopia", "deuteranopia", "tritanopia"), r = 1, g = 2, b = 3, crop_manual = FALSE, select_class = FALSE){
   cvd <- cvd[1]
   if(!cvd %in% c("protanopia", "deuteranopia", "tritanopia")) stop("Wrong 'cvd` value. It can be 'protanopia', 'deuteranopia', or 'tritanopia'")
 
@@ -46,23 +47,24 @@ cblind.plot = function(im, r = 1, g = 2, b = 3, cvd = c("protanopia", "deuterano
   return(pl)
 }
 
-#' Title
+#' Prepare Input Image for Color Blind Plot
 #'
-#' @param im
-#' @param r
-#' @param g
-#' @param b
-#' @param cvd
-#' @param crop_manual
-#' @param select_class
+#' Prepares input image for cblind.plot by: a) cropping the image, b) selecting certain colors, c) performing PCA on the image.
 #'
-#' @return
+#' @param im A file path to an image
+#' @param r Index of the Red channel
+#' @param g Index of the Green channel
+#' @param b Index of the Blue channel
+#' @param crop_manual Do you want to manually crop the input image?
+#' @param select_class Do you want to select only certain colors in the image for the further processing?
+#'
+#' @return A terra SpatRaster object
 #' @export
 #'
 #' @examples
-#' library(terra)
-#' my_image <- rast(system.file("pic/rainbowr.png", package = "cblindplot"))
-#' plotRGB(my_image)
+#' my_image <- system.file("pic/rainbowr.png", package = "cblindplot")
+#' suppressWarnings(my_image_terra <- terra::rast(my_image))
+#' terra::plotRGB(my_image_terra)
 #'
 #' new_image <- cblind.prep(my_image)
 #' new_image
@@ -115,13 +117,13 @@ cblind.prep <- function(im, r = 1, g = 2, b = 3, crop_manual = FALSE, select_cla
 }
 
 cblind.prep.input = function(im){
-  if (!inherits(im, "SpatRaster") && !inherits(im, "RasterLayer") && !inherits(im, "RasterStack") && !inherits(im, "RasterBrick") && !inherits(im, "list")){
+  if (!inherits(im, "SpatRaster") && !inherits(im, "RasterLayer") && !inherits(im, "RasterStack") && !inherits(im, "RasterBrick") && !inherits(im, "list") && !inherits(im, "character")){
     stop("'im' must be a raster object or a list")
-  } else if (inherits(im, "RasterLayer") || inherits(im, "RasterStack") || inherits(im, "RasterBrick")){
-    im <- terra::rast(im)
+  } else if (inherits(im, "RasterLayer") || inherits(im, "RasterStack") || inherits(im, "RasterBrick") || is.character(im)){
+    suppressWarnings(im <- terra::rast(im))
   } else if (inherits(im, "list")){
     invisible(lapply(im, function(x) if(!inherits(x, "SpatRaster")) stop("all the elements of the list must be SpatRaster objects")))
-    im <- terra::rast(im)
+    suppressWarnings(im <- terra::rast(im))
   }
   return(im)
 }

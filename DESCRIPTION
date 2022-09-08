@@ -1,12 +1,14 @@
 Package: cblindplot
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Title: Recolors Images to be Colour Blind Friendly
+Version: 0.0.1
+Authors@R: c(
+  person("Elisa", "Thouverai", role = c("aut", "cre"), email = "elisa.th95@gmail.com"),
+  person("Duccio", "Rocchini", role = c("aut"), email = "duccio.rocchini@unibo.it"),
+  person("Jakub", "Nowosad", role = c("aut"), email = "nowosad.jakub@gmail.com", 
+           comment = c(ORCID = "0000-0002-1057-3721")))
+Description: Enables colour blind people to enter an image, specify their colour vision deficiency, and get a colour blind friendly plot as output.
+  It applies PCA analysis to the input image colors, and colors the values of the main principal component using a colour blind friendly palette.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
