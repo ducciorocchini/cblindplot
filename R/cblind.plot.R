@@ -31,25 +31,21 @@ cblind.plot = function(im, cvd = c("protanopia", "deuteranopia", "tritanopia"), 
   cvd <- cvd[1]
   if(!cvd %in% c("protanopia", "deuteranopia", "tritanopia")) stop("Wrong 'cvd` value. It can be 'protanopia', 'deuteranopia', or 'tritanopia'")
 
-  impl <- cblind.prep(im, r = r, g = g, crop_manual = crop_manual, select_class = select_class)
+  impl <- cblind.prep(im, r = r, g = g, b = b, crop_manual = crop_manual, select_class = select_class)
   impl <- as.data.frame(impl, xy = TRUE)[c(1:3)]
   colnames(impl) <- c("x", "y", "values")
-  ggt <- ggplot2::ggplot(impl, ggplot2::aes_string(x = "x", y = "y", fill = "values")) +
-    ggplot2::geom_raster() +
+  ggt <- ggplot2::ggplot(impl) +
+    ggplot2::geom_raster(ggplot2::aes_string(x = "x", y = "y", fill = "values")) +
+    ggplot2::coord_equal() +
+    ggplot2::theme_void() #+
     # ggplot2::coord_sf() +
-    ggplot2::theme(legend.position = "bottom")
+    #ggplot2::theme(legend.position = "bottom")
   if(cvd == "deuteranopia") {
-    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent") +
-      ggplot2::coord_equal() +
-      ggplot2::theme_void()
+    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent")
   } else if(cvd == "protanopia") {
-    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "E") +
-      ggplot2::coord_equal() +
-      ggplot2::theme_void()
+    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "E")
   } else if(cvd == "tritanopia") {
-    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "A") +
-      ggplot2::coord_equal() +
-      ggplot2::theme_void()
+    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "A")
   }
   return(pl)
 }
