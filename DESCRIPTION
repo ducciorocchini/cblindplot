@@ -1,6 +1,6 @@
 Package: cblindplot
 Title: Recolors Images to be Colour Blind Friendly
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
   person("Elisa", "Thouverai", role = c("aut", "cre"), email = "elisa.th95@gmail.com"),
   person("Duccio", "Rocchini", role = c("aut"), email = "duccio.rocchini@unibo.it"),

@@ -26,9 +26,9 @@ A terra SpatRaster object
 Prepares input image for cblind.plot by: a) cropping the image, b) selecting certain colors, c) performing PCA on the image.
 }
 \examples{
-my_image <- system.file("pic/rainbowr.png", package = "cblindplot")
-suppressWarnings(my_image_terra <- terra::rast(my_image))
-terra::plotRGB(my_image_terra)
+my_image <- system.file("pic/imager.png", package = "cblindplot")
+#suppressWarnings(my_image_terra <- terra::rast(my_image))
+#terra::plotRGB(my_image_terra)
 
 new_image <- cblind.prep(my_image)
 new_image

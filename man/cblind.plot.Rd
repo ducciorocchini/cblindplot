@@ -36,9 +36,10 @@ A ggplot2 plot
 It updates the color palette on an input image and returns a new visualization along with a new color legend.
 }
 \examples{
-my_image <- system.file("pic/rainbowr.png", package = "cblindplot")
-suppressWarnings(my_image_terra <- terra::rast(my_image))
-terra::plotRGB(my_image_terra)
+my_image <- system.file("pic/imager.png", package = "cblindplot")
+
+#suppressWarnings(my_image_terra <- terra::rast(my_image))
+#terra::plotRGB(my_image_terra)
 
 cblind.plot(my_image)
 #cblind.plot(my_image, crop_manual = TRUE)

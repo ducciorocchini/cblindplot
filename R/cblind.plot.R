@@ -19,9 +19,10 @@
 #' @export
 #'
 #' @examples
-#' my_image <- system.file("pic/rainbowr.png", package = "cblindplot")
-#' suppressWarnings(my_image_terra <- terra::rast(my_image))
-#' terra::plotRGB(my_image_terra)
+#' my_image <- system.file("pic/imager.png", package = "cblindplot")
+#'
+#' #suppressWarnings(my_image_terra <- terra::rast(my_image))
+#' #terra::plotRGB(my_image_terra)
 #'
 #' cblind.plot(my_image)
 #' #cblind.plot(my_image, crop_manual = TRUE)
@@ -38,11 +39,17 @@ cblind.plot = function(im, cvd = c("protanopia", "deuteranopia", "tritanopia"), 
     # ggplot2::coord_sf() +
     ggplot2::theme(legend.position = "bottom")
   if(cvd == "deuteranopia") {
-    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent")
+    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent") +
+      ggplot2::coord_equal() +
+      ggplot2::theme_void()
   } else if(cvd == "protanopia") {
-    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "E")
+    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "E") +
+      ggplot2::coord_equal() +
+      ggplot2::theme_void()
   } else if(cvd == "tritanopia") {
-    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "A")
+    pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "A") +
+      ggplot2::coord_equal() +
+      ggplot2::theme_void()
   }
   return(pl)
 }
@@ -62,9 +69,9 @@ cblind.plot = function(im, cvd = c("protanopia", "deuteranopia", "tritanopia"), 
 #' @export
 #'
 #' @examples
-#' my_image <- system.file("pic/rainbowr.png", package = "cblindplot")
-#' suppressWarnings(my_image_terra <- terra::rast(my_image))
-#' terra::plotRGB(my_image_terra)
+#' my_image <- system.file("pic/imager.png", package = "cblindplot")
+#' #suppressWarnings(my_image_terra <- terra::rast(my_image))
+#' #terra::plotRGB(my_image_terra)
 #'
 #' new_image <- cblind.prep(my_image)
 #' new_image
