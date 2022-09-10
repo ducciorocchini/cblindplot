@@ -1,0 +1,40 @@
+on:
+  push:
+    branches:
+      main
+name: Render
+jobs:
+  bookdown:
+    name: Render-Book
+    runs-on: ubuntu-latest
+    container: geocompr/geocompr:minimal
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+             any::rcmdcheck
+             any::pkgdown
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+
+      - name: Install package
+        run: R CMD INSTALL .
+
+      - name: Deploy package
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
+
+      - name: Test coverage
+        run: covr::codecov()
+        shell: Rscript {0}
