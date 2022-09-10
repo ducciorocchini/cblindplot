@@ -4,6 +4,8 @@
 # cblindplot
 
 <!-- badges: start -->
+
+[![main](https://github.com/ducciorocchini/cblindplot/actions/workflows/main.yaml/badge.svg)](https://github.com/ducciorocchini/cblindplot/actions/workflows/main.yaml)
 <!-- badges: end -->
 
 **cblindplot** R package is described in Rocchini et al. -
