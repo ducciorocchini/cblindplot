@@ -2,14 +2,15 @@ on:
   push:
     branches:
       main
-name: Render
+name: test
 jobs:
   bookdown:
-    name: Render-Book
+    name: test
     runs-on: ubuntu-latest
     container: geocompr/geocompr:minimal
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
     steps:
       - uses: actions/checkout@v2
 
@@ -25,9 +26,6 @@ jobs:
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
-
-      - name: Install package
-        run: R CMD INSTALL .
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
