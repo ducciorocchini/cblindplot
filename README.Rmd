@@ -1,18 +1,28 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # cblindplot
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-**cblindplot** R package is described in Rocchini et al. -
-<https://ecoevorxiv.org/9mc7z>.
+**cblindplot** R package is described in Rocchini et al. - https://ecoevorxiv.org/9mc7z.
 
 ## Installation
 
-You can install the development version of **cblindplot** from
-[GitHub](https://github.com/) with:
+You can install the development version of **cblindplot** from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
@@ -21,20 +31,18 @@ remotes::install_github("ducciorocchini/cblindplot")
 
 ## Example
 
-``` r
+```{r example}
 library(cblindplot)
 my_image <- system.file("pic/imager.png", package = "cblindplot")
 ```
 
-``` r
+```{r}
+#| warning: false
 my_image_terra <- terra::rast(my_image)
 terra::plotRGB(my_image_terra)
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
-
-``` r
+```{r}
 cblind.plot(my_image, cvd = "deuteranopia")
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
