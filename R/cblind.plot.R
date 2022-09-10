@@ -7,7 +7,7 @@
 #'
 #' It updates the color palette on an input image and returns a new visualization along with a new color legend.
 #'
-#' @param im A file path to an image
+#' @param im A file path to an image or a terra/raster object
 #' @param cvd A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia"
 #' @param r Index of the Red channel
 #' @param g Index of the Green channel

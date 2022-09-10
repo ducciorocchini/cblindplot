@@ -15,7 +15,7 @@ cblind.plot(
 )
 }
 \arguments{
-\item{im}{A file path to an image}
+\item{im}{A file path to an image or a terra/raster object}
 
 \item{cvd}{A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia"}
 
