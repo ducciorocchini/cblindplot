@@ -121,7 +121,7 @@ cblind.prep <- function(im, r = 1, g = 2, b = 3, crop_manual = FALSE, select_cla
 
 cblind.prep.input = function(im){
   if (!inherits(im, "SpatRaster") && !inherits(im, "RasterLayer") && !inherits(im, "RasterStack") && !inherits(im, "RasterBrick") && !inherits(im, "list") && !inherits(im, "character")){
-    stop("'im' must be a raster object or a list")
+    stop("'im' must be a raster object, a list or a path to an image")
   } else if (inherits(im, "RasterLayer") || inherits(im, "RasterStack") || inherits(im, "RasterBrick") || is.character(im)){
     suppressWarnings(im <- terra::rast(im))
   } else if (inherits(im, "list")){
