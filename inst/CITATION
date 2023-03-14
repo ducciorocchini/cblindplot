@@ -1,0 +1,27 @@
+citHeader("To cite cblindplot in publications please use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "Scientific maps should reach everyone: The cblindplot R package to let colour blind people visualise spatial patterns",
+  author   = c(person("Duccio", "Rocchini"),
+             person("Jakub", "Nowosad"),
+             person("Rossella", "D’Introno"),
+             person("Ludovico", "Chieffallo"),
+             person("Giovanni", "Bacaro"),
+             person("Roberto", "Cazzolla Gatti"),
+             person("Giles M.", "Foody"),
+             person("Reinhard", "Furrer"),
+             person("Lukas", "Gabor"),
+             person("Marco", "Malavasi"),
+             person("Matteo", "Marcantonio"),
+             person("Elisa", "Marchetto"),
+             person("Vitezslav", "Moudry"),
+             person("Carlo", "Ricotta"),
+             person("Petra", "Simova"),
+             person("Michele", "Torresani"),
+             person("Elisa", "Thouverai")),
+  journal  = "Ecological Informatics",
+  year     = "2023",
+  url      = "https://doi.org/10.1016/j.ecoinf.2023.102045",
+  textVersion = paste("Rocchini, D., Nowosad, J., D’Introno, R., Chieffallo, L., Bacaro, G., Gatti, R. C., Foody, G. M., Furrer, R., Gabor, L., Malavasi, M., Marcantonio, M., Marchetto, E., Moudry, V., Ricotta, C., Simova, P., Torresani, M., & Thouverai, E. (2023). Scientific maps should reach everyone: The cblindplot R package to let colour blind people visualise spatial patterns. Ecological Informatics. https://doi.org/10.1016/j.ecoinf.2023.102045")
+)
