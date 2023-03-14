@@ -17,7 +17,8 @@ cblind.plot(
 \arguments{
 \item{im}{A file path to an image or a terra/raster object}
 
-\item{cvd}{A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia"}
+\item{cvd}{A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia";
+or a vector of colors}
 
 \item{r}{Index of the Red channel}
 
