@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![main](https://github.com/ducciorocchini/cblindplot/actions/workflows/main.yaml/badge.svg)](https://github.com/ducciorocchini/cblindplot/actions/workflows/main.yaml)
 <!-- badges: end -->
 
-**cblindplot** R package is described in Rocchini et al. - https://ecoevorxiv.org/9mc7z.
+**cblindplot** R package is described in Rocchini et al. - https://doi.org/10.1016/j.ecoinf.2023.102045.
 
 ## Installation
 
