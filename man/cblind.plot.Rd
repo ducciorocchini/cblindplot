@@ -6,7 +6,7 @@
 \usage{
 cblind.plot(
   im,
-  cvd = c("protanopia", "deuteranopia", "tritanopia"),
+  cvd,
   r = 1,
   g = 2,
   b = 3,
@@ -17,7 +17,8 @@ cblind.plot(
 \arguments{
 \item{im}{A file path to an image or a terra/raster object}
 
-\item{cvd}{A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia"}
+\item{cvd}{A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia";
+or a vector of colors}
 
 \item{r}{Index of the Red channel}
 
@@ -42,6 +43,8 @@ my_image <- system.file("pic/imager.png", package = "cblindplot")
 #terra::plotRGB(my_image_terra)
 
 cblind.plot(my_image)
+#cblind.plot(my_image, cvd = "tritanopia")
+#cblind.plot(my_image, cvd = hcl.colors(7, palette = "Sunset"))
 #cblind.plot(my_image, crop_manual = TRUE)
 #cblind.plot(my_image, select_class = TRUE)
 }

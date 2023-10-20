@@ -9,7 +9,7 @@
 <!-- badges: end -->
 
 **cblindplot** R package is described in Rocchini et al. -
-<https://ecoevorxiv.org/9mc7z>.
+<https://doi.org/10.1016/j.ecoinf.2023.102045>.
 
 ## Installation
 
@@ -40,3 +40,21 @@ cblind.plot(my_image, cvd = "deuteranopia")
 ```
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+## Citation
+
+To cite the **cblindplot** package in publications, please use [this
+paper](https://doi.org/10.1016/j.ecoinf.2023.102045):
+
+> Rocchini, D., Nowosad, J., D’Introno, R., Chieffallo, L., Bacaro, G.,
+> Gatti, R. C., Foody, G. M., Furrer, R., Gabor, L., Malavasi, M.,
+> Marcantonio, M., Marchetto, E., Moudry, V., Ricotta, C., Simova, P.,
+> Torresani, M., & Thouverai, E. (2023). Scientific maps should reach
+> everyone: The cblindplot R package to let colour blind people
+> visualise spatial patterns. Ecological Informatics.
+> <https://doi.org/10.1016/j.ecoinf.2023.102045>
+
+LaTeX/BibTeX version can be obtained with:
+
+    library(cblindplot)
+    citation("cblindplot")

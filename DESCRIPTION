@@ -1,6 +1,6 @@
 Package: cblindplot
 Title: Recolors Images to be Colour Blind Friendly
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: c(
   person("Elisa", "Thouverai", role = c("aut", "cre"), email = "elisa.th95@gmail.com"),
   person("Duccio", "Rocchini", role = c("aut"), email = "duccio.rocchini@unibo.it"),
@@ -11,7 +11,7 @@ Description: Enables colour blind people to enter an image, specify their colour
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports:
     ggplot2,
     imagefx, 

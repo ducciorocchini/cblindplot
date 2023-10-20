@@ -8,7 +8,8 @@
 #' It updates the color palette on an input image and returns a new visualization along with a new color legend.
 #'
 #' @param im A file path to an image or a terra/raster object
-#' @param cvd A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia"
+#' @param cvd A type of color vision deficiency (CVD): "protanopia", "deuteranopia", or "tritanopia";
+#'   or a vector of colors
 #' @param r Index of the Red channel
 #' @param g Index of the Green channel
 #' @param b Index of the Blue channel
@@ -25,22 +26,26 @@
 #' #terra::plotRGB(my_image_terra)
 #'
 #' cblind.plot(my_image)
+#' #cblind.plot(my_image, cvd = "tritanopia")
+#' #cblind.plot(my_image, cvd = hcl.colors(7, palette = "Sunset"))
 #' #cblind.plot(my_image, crop_manual = TRUE)
 #' #cblind.plot(my_image, select_class = TRUE)
-cblind.plot = function(im, cvd = c("protanopia", "deuteranopia", "tritanopia"), r = 1, g = 2, b = 3, crop_manual = FALSE, select_class = FALSE){
-  cvd <- cvd[1]
-  if(!cvd %in% c("protanopia", "deuteranopia", "tritanopia")) stop("Wrong 'cvd` value. It can be 'protanopia', 'deuteranopia', or 'tritanopia'")
-
+cblind.plot = function(im, cvd, r = 1, g = 2, b = 3, crop_manual = FALSE, select_class = FALSE){
+  if (missing(cvd)){
+    cvd <- "protanopia"
+  } else if(length(cvd) == 1 && !cvd %in% c("protanopia", "deuteranopia", "tritanopia")){
+    stop("Wrong 'cvd` value. It can be 'protanopia', 'deuteranopia', 'tritanopia', or a vector of colors")
+  }
   impl <- cblind.prep(im, r = r, g = g, b = b, crop_manual = crop_manual, select_class = select_class)
   impl <- as.data.frame(impl, xy = TRUE)[c(1:3)]
   colnames(impl) <- c("x", "y", "values")
   ggt <- ggplot2::ggplot(impl) +
     ggplot2::geom_raster(ggplot2::aes_string(x = "x", y = "y", fill = "values")) +
     ggplot2::coord_equal() +
-    ggplot2::theme_void() #+
-    # ggplot2::coord_sf() +
-    #ggplot2::theme(legend.position = "bottom")
-  if(cvd == "deuteranopia") {
+    ggplot2::theme_void()
+  if (length(cvd) > 1){
+    pl <- ggt + ggplot2::scale_fill_gradientn(colours = cvd, na.value = "transparent")
+  } else if(cvd == "deuteranopia") {
     pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent")
   } else if(cvd == "protanopia") {
     pl <- ggt + ggplot2::scale_fill_viridis_c(na.value = "transparent", option = "E")
