@@ -22,6 +22,7 @@ jobs:
           extra-packages: |
              any::rcmdcheck
              any::pkgdown
+             any::covr
              local::.
           needs: check
 
