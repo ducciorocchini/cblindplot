@@ -11,7 +11,8 @@ cblind.plot(
   g = 2,
   b = 3,
   crop_manual = FALSE,
-  select_class = FALSE
+  select_class = FALSE,
+  legend
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ or a vector of colors}
 \item{crop_manual}{Do you want to manually crop the input image?}
 
 \item{select_class}{Do you want to select only certain colors in the image for the further processing?}
+
+\item{legend}{Optional: a file path to a legend image or a terra/raster object with a legend of im}
 }
 \value{
 A ggplot2 plot
@@ -47,4 +50,8 @@ cblind.plot(my_image)
 #cblind.plot(my_image, cvd = hcl.colors(7, palette = "Sunset"))
 #cblind.plot(my_image, crop_manual = TRUE)
 #cblind.plot(my_image, select_class = TRUE)
+
+#my_legend <- system.file("pic/legendr.png", package = "cblindplot")
+#cblind.plot(my_image, cvd = "tritanopia", legend = my_legend)
+#cblind.plot(my_image, cvd = hcl.colors(7, palette = "Sunset"), legend = my_legend)
 }
