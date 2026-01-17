@@ -11,6 +11,14 @@
 **cblindplot** R package is described in Rocchini et al. -
 <https://doi.org/10.1016/j.ecoinf.2023.102045>.
 
+<p align="center">
+  <img 
+    src="https://github.com/user-attachments/assets/857b6755-8f7d-4a49-a123-92332de2fc76"
+    alt="cellulaR"
+    width="300"
+  />
+</p>
+
 ## Installation
 
 You can install the development version of **cblindplot** from
