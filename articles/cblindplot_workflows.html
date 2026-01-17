@@ -67,7 +67,7 @@
 
 
 
-      </header><script src="cblindplot_workflows_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Two possible workflows with cblindplot</h1>
@@ -80,57 +80,81 @@
 
     
     
-<p>The goal of the <strong>cblindplot</strong> package is to provide a simple way to convert exisitng non-colorblind plots and maps into colorblind-friendly plots and maps.</p>
+<p>The goal of the <strong>cblindplot</strong> package is to provide a
+simple way to convert exisitng non-colorblind plots and maps into
+colorblind-friendly plots and maps.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">cblindplot</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="workflow-1">Workflow 1<a class="anchor" aria-label="anchor" href="#workflow-1"></a>
 </h2>
-<p>The first workflow is to use the <code><a href="../reference/cblind.plot.html">cblind.plot()</a></code> function directly on a raster object or file path. It works well when the original color palette of the input object is sequential.</p>
-<p>Let’s start by reading an example image with a non-colorblind-friendly palette and visualize it.</p>
+<p>The first workflow is to use the <code><a href="../reference/cblind.plot.html">cblind.plot()</a></code> function
+directly on a raster object or file path. It works well when the
+original color palette of the input object is sequential.</p>
+<p>Let’s start by reading an example image with a
+non-colorblind-friendly palette and visualize it.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_image</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"pic/imager.png"</span>, package <span class="op">=</span> <span class="st">"cblindplot"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="va">my_image_terra</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="va">my_image</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plotRGB.html" class="external-link">plotRGB</a></span><span class="op">(</span><span class="va">my_image_terra</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<p>To update its color palette, we can use the <code>cblind.plot</code> function and provide a color vision deficiency (CVD) type. In this case, the <code><a href="../reference/cblind.plot.html">cblind.plot()</a></code> function will take the original image in RGB, extract its first principal component, and then apply a new color palette to the transformed single-band image.</p>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
+<p>To update its color palette, we can use the <code>cblind.plot</code>
+function and provide a color vision deficiency (CVD) type. In this case,
+the <code><a href="../reference/cblind.plot.html">cblind.plot()</a></code> function will take the original image in
+RGB, extract its first principal component, and then apply a new color
+palette to the transformed single-band image.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/cblind.plot.html">cblind.plot</a></span><span class="op">(</span><span class="va">my_image</span>, cvd <span class="op">=</span> <span class="st">"deuteranopia"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<p>Alternatively, we can provide a custom color palette to the <code>cvd</code> argument.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cblind.plot.html">cblind.plot</a></span><span class="op">(</span><span class="va">my_image</span>, cvd <span class="op">=</span> <span class="st">"deuteranopia"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: `aes_string()` was deprecated in ggplot2 3.0.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use tidy evaluation idioms with `aes()`.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> See also `vignette("ggplot2-in-packages")` for more information.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">cblindplot</span> package.</span></span>
+<span><span class="co">#&gt;   Please report the issue to the authors.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre></div>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="700"></p>
+<p>Alternatively, we can provide a custom color palette to the
+<code>cvd</code> argument.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">7</span>, palette <span class="op">=</span> <span class="st">"Sunset"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/cblind.plot.html">cblind.plot</a></span><span class="op">(</span><span class="va">my_image</span>, cvd <span class="op">=</span> <span class="va">my_palette</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<p>The above approach, however, does not work well when the original color palette of the input object is more complex (e.g., diverging). You can see it by running the following code.</p>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
+<p>The above approach, however, does not work well when the original
+color palette of the input object is more complex (e.g., diverging). You
+can see it by running the following code.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_image2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"pic/rainbowr.png"</span>, package <span class="op">=</span> <span class="st">"cblindplot"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="va">my_image_terra2</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="va">my_image2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plotRGB.html" class="external-link">plotRGB</a></span><span class="op">(</span><span class="va">my_image_terra2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cblind.plot.html">cblind.plot</a></span><span class="op">(</span><span class="va">my_image2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-5-2.png" width="700"></p>
-<p>Here, both low and high values are mapped to the same dark color and it is impossible to distinguish them.</p>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-5-2.png" class="r-plt" alt="" width="700"></p>
+<p>Here, both low and high values are mapped to the same dark color and
+it is impossible to distinguish them.</p>
 </div>
 <div class="section level2">
 <h2 id="workflow-2">Workflow 2<a class="anchor" aria-label="anchor" href="#workflow-2"></a>
 </h2>
-<p>The second workflow also uses the <code><a href="../reference/cblind.plot.html">cblind.plot()</a></code> function but it requires to provide an image of the color legend as well.</p>
+<p>The second workflow also uses the <code><a href="../reference/cblind.plot.html">cblind.plot()</a></code> function
+but it requires to provide an image of the color legend as well.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_legend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"pic/legendr.png"</span>, package <span class="op">=</span> <span class="st">"cblindplot"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="va">my_terra_legend</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">rast</a></span><span class="op">(</span><span class="va">my_legend</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plotRGB.html" class="external-link">plotRGB</a></span><span class="op">(</span><span class="va">my_terra_legend</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<p>In this case, the order of the colors in the legend are used to update the color palette of the input object.</p>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
+<p>In this case, the order of the colors in the legend are used to
+update the color palette of the input object.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cblind.plot.html">cblind.plot</a></span><span class="op">(</span><span class="va">my_image2</span>, legend <span class="op">=</span> <span class="va">my_legend</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<p>Here, we can also customize the color palette by providing a custom color palette to the <code>cvd</code> argument.</p>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
+<p>Here, we can also customize the color palette by providing a custom
+color palette to the <code>cvd</code> argument.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_palette</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">7</span>, palette <span class="op">=</span> <span class="st">"Sunset"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/cblind.plot.html">cblind.plot</a></span><span class="op">(</span><span class="va">my_image2</span>, cvd <span class="op">=</span> <span class="va">my_palette</span>, legend <span class="op">=</span> <span class="va">my_legend</span><span class="op">)</span></span></code></pre></div>
-<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="cblindplot_workflows_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700"></p>
 </div>
   </div>
 
@@ -149,7 +173,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>
